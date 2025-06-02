@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/1bimo_logo.jpg">
+    <title>النسخة المدفوعة - NTRS XIT</title>
+    <style>
+        :root {
+            --primary: #003cff;
+            --secondary: #00b4ff;
+            --dark: #0a0e17;
+            --light: #faf8f9;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 14, 23, 0.95);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--light);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--light);
+            box-shadow: 0 4px 15px rgba(0, 60, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .logo:hover .logo-icon::after {
+            transform: translateX(100%);
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Premium Content */
+        .premium-content {
+            padding-top: 100px;
+        }
+
+        .pricing-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--primary);
+            position: relative;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            right: 50%;
+            transform: translateX(50%);
+            background: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .features-list li {
+            margin: 0.5rem 0;
+            color: var(--gray);
+        }
+
+        .features-list li i {
+            color: var(--success);
+            margin-left: 0.5rem;
+        }
+
+        .btn-purchase {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-purchase:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .payment-methods {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .payment-methods h2 {
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .payment-icons img {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .payment-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: rgba(10, 14, 23, 0.98);
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            padding: 1rem;
+        }
+
+        .footer-section h3 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -0.5rem;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .pricing-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-icons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="ri-gamepad-fill"></i>
+                </div>
+                <div class="logo-text">
+                    NTRS XIT <span>PREMIUM VERSION</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">الرئيسية</a>
+                <a href="free.html">النسخة المجانية</a>
+                <a href="payment.html">النسخة المدفوعة</a>
+                <a href="index.html#features">المميزات</a>
+                <a href="index.html#contact">اتصل بنا</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container premium-content">
+        <h1 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">النسخة المدفوعة</h1>
+
+        <div class="pricing-section">
+            <div class="pricing-card">
+                <h3>اشتراك شهري</h3>
+                <div class="price">$10 <span>/ شهرياً</span></div>
+                <ul class="features-list">
+                    <li><i class="ri-check-line"></i> جميع مميزات النسخة المجانية</li>
+                    <li><i class="ri-check-line"></i> تحسينات متقدمة للأداء</li>
+                    <li><i class="ri-check-line"></i> دعم فني أساسي</li>
+                    <li><i class="ri-check-line"></i> تحديثات شهرية</li>
+                </ul>
+                <a href="#" class="btn-purchase">اشترك الآن</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="featured-badge">الأكثر شعبية</div>
+                <h3>اشتراك سنوي</h3>
+                <div class="price">$100 <span>/ سنوياً</span></div>
+                <ul class="features-list">
+                    <li><i class="ri-check-line"></i> جميع مميزات الاشتراك الشهري</li>
+                    <li><i class="ri-check-line"></i> خصم 17% عن الاشتراك الشهري</li>
+                    <li><i class="ri-check-line"></i> دعم فني متميز</li>
+                    <li><i class="ri-check-line"></i> مميزات حصرية</li>
+                    <li><i class="ri-check-line"></i> تحديثات فورية</li>
+                </ul>
+                <a href="#" class="btn-purchase">اشترك الآن</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>اشتراك مدى الحياة</h3>
+                <div class="price">$250 <span>/ لمرة واحدة</span></div>
+                <ul class="features-list">
+                    <li><i class="ri-check-line"></i> جميع المميزات المتاحة</li>
+                    <li><i class="ri-check-line"></i> دعم فني VIP</li>
+                    <li><i class="ri-check-line"></i> تحديثات مدى الحياة</li>
+                    <li><i class="ri-check-line"></i> مميزات حصرية إضافية</li>
+                </ul>
+                <a href="#" class="btn-purchase">اشترك الآن</a>
+            </div>
+        </div>
+
+        <div class="payment-methods">
+            <h2>طرق الدفع المتاحة</h2>
+            <p>نقبل العديد من طرق الدفع لراحتك</p>
+            <div class="payment-icons">
+                <img src="img/paypal.svg" alt="PayPal">
+                <img src="img/paypal.png" alt="Bank Transfer">
+                <!-- يمكنك إضافة المزيد من طرق الدفع هنا -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن NTRS XIT</h3>
+                    <p style="color: var(--gray);">نحن نقدم أفضل خدمات تطوير Free Fire مع ضمان الأمان والجودة العالية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="ri-facebook-fill"></i></a>
+                        <a href="#"><i class="ri-twitter-fill"></i></a>
+                        <a href="#"><i class="ri-instagram-line"></i></a>
+                        <a href="#"><i class="ri-discord-fill"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="free.html">النسخة المجانية</a></li>
+                        <li><a href="payment.html">النسخة المدفوعة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الدعم</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">اتصل بنا</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NTRS XIT - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+

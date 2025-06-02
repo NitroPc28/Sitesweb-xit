@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTRS XIT - منصة تطوير Free Fire المتقدمة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #003cff;
+            --primary-dark: #0026a7;
+            --secondary: #00b4ff;
+            --accent: #ff3c00;
+            --dark: #0a0e17;
+            --light: #faf8f9;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--light);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            100% { transform: translateX(100%); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+            background: radial-gradient(circle at top right, rgba(0, 60, 255, 0.1), transparent),
+                       radial-gradient(circle at bottom left, rgba(0, 180, 255, 0.1), transparent);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>') repeat;
+            opacity: 0.3;
+            animation: backgroundMove 30s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            box-shadow: 0 4px 15px rgba(0, 60, 255, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--light);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 60, 255, 0.4);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            position: relative;
+            background: linear-gradient(to bottom, var(--dark), rgba(10, 14, 23, 0.95));
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: rgba(10, 14, 23, 0.98);
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            padding: 1rem;
+        }
+
+        .footer-section h3 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -0.5rem;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="ri-gamepad-fill"></i>
+                </div>
+                <div class="logo-text">
+                    NTRS XIT <span>PREMIUM</span>
+                </div>
+            </a>            <nav class="nav-links">
+                <a href="#home">الرئيسية</a>
+                <a href="https://discord.gg/UjU5DGmFMU" target="_blank">النسخة المجانية</a>
+                <a href="https://discord.gg/UjU5DGmFMU" target="_blank">النسخة المدفوعة</a>
+                <a href="#features">المميزات</a>
+                <a href="#pricing">الأسعار</a>
+                <a href="#contact">اتصل بنا</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1 class="animate__animated animate__fadeInDown">
+                ارتقِ بمستوى لعبك مع NTRS XIT
+            </h1>
+            <p class="animate__animated animate__fadeIn">
+                أفضل منصة لتحسين أداءك في Free Fire مع مجموعة متكاملة من الأدوات المتقدمة
+            </p>            <div class="animate__animated animate__fadeInUp">
+                <a href="https://discord.gg/UjU5DGmFMU" target="_blank" class="btn btn-primary">جرب النسخة المجانية</a>
+                <a href="https://discord.gg/UjU5DGmFMU" target="_blank" class="btn btn-outline">احصل على النسخة الكاملة</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>مميزاتنا الحصرية</h2>
+                <p>اكتشف ما يجعلنا الخيار الأفضل</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <i class="ri-shield-star-fill"></i>
+                    <h3>حماية متقدمة</h3>
+                    <p>نظام حماية متطور يضمن أمان حسابك بنسبة 100%</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <i class="ri-speed-fill"></i>
+                    <h3>أداء محسّن</h3>
+                    <p>تحسين FPS وتقليل التأخير للحصول على أفضل تجربة لعب</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <i class="ri-game-fill"></i>
+                    <h3>أدوات متقدمة</h3>
+                    <p>مجموعة كاملة من الأدوات المتطورة لتحسين مستوى لعبك</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <i class="ri-customer-service-2-fill"></i>
+                    <h3>دعم متواصل</h3>
+                    <p>فريق دعم فني متخصص على مدار الساعة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works section">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+            </div>
+            <div class="steps">
+                <!-- Step 1 -->
+                <div class="step slide-up">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>تنزيل وتثبيت</h3>
+                        <p>احصل على عميلنا خفيف الوزن (أقل من 5 ميجا بايت) الذي يعمل بسلاسة في الخلفية دون التأثير على أداء اللعبة.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step slide-up delay-1">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>تخصيص إعداداتك</h3>
+                        <p>استخدم لوحة التحكم سهلة الاستخدام لضبط الميزات بما يتناسب مع أسلوب لعبك. تتوفر إعدادات مسبقة تناسب جميع المستويات، من المبتدئين إلى المحترفين.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step slide-up delay-2">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>الإطلاق والسيطرة</h3>
+                        <p>ابدأ اللعبة من خلال برنامج التشغيل الخاص بنا واستمتع بالميزة التنافسية باستخدام أدوات التحسين المتقدمة لدينا.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+      <!-- Pricing Section -->
+    <section id="pricing" class="pricing section">
+        <div class="container">
+            <div class="section-title">
+                <h2>خطط الأسعار</h2>
+                <p>اختر الخطة المناسبة لاحتياجاتك</p>
+            </div>
+            <div class="pricing-table-container">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th class="feature-column">الميزات</th>
+                            <th>
+                                <div class="plan-header">
+                                    <h3>النسخة الأساسية</h3>
+                                    <div class="price">$15.99</div>
+                                    <div class="duration">اسبوعيا</div>
+                                </div>
+                            </th>
+                            <th class="popular">
+                                <div class="plan-header">
+                                    <div class="popular-badge">الأكثر طلباً</div>
+                                    <h3>النسخة المتقدمة</h3>
+                                    <div class="price">$29.99</div>
+                                    <div class="duration">3 أشهر</div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="plan-header">
+                                    <h3>النسخة المميزة</h3>
+                                    <div class="price">$49.99</div>
+                                    <div class="duration">مدى الحياة</div>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Aimbot Extrnal</td>
+                            <td><i class="ri-check-line"></i></td>
+                            <td><i class="ri-check-line"></i></td>
+                            <td><i class="ri-check-line premium"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Awm Scope</td>
+                            <td><i class="ri-check-line"></i></td>
+                            <td><i class="ri-check-line"></i></td>
+                            <td><i class="ri-check-line premium"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Awm Switch</td>
+                            <td><i class="ri-check-line"></i></td>
+                            <td><i class="ri-check-line"></i></td>
+                            <td><i class="ri-check-line premium"></i></td>
+                        </tr>
+                        <tr>
+                            <td>M82B Switch</td>
+                            <td><i class="ri-close-line"></i></td>
+                            <td><i class="ri-check-line"></i></td>
+                            <td><i class="ri-check-line premium"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Camera left</td>
+                            <td><i class="ri-close-line"></i></td>
+                            <td><i class="ri-check-line"></i></td>
+                            <td><i class="ri-check-line premium"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Speed Hack</td>
+                            <td><i class="ri-close-line"></i></td>
+                            <td><i class="ri-close-line"></i></td>
+                            <td><i class="ri-check-line premium"></i></td>
+                        </tr>
+                        <tr>
+                            <td>الدعم الفني</td>
+                            <td>أساسي</td>
+                            <td>متقدم 24/7</td>
+                            <td>VIP</td>
+                        </tr>                        <tr class="action-row">
+                            <td></td>
+                            <td>
+                                <a href="https://discord.gg/UjU5DGmFMU" target="_blank" class="btn btn-primary">اختر الخطة</a>
+                            </td>
+                            <td>
+                                <a href="https://discord.gg/UjU5DGmFMU" target="_blank" class="btn btn-primary popular">اختر الخطة</a>
+                            </td>
+                            <td>
+                                <a href="https://discord.gg/UjU5DGmFMU" target="_blank" class="btn btn-primary">اختر الخطة</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <style>
+            .pricing-table-container {
+                overflow-x: auto;
+                margin: 2rem 0;
+                padding: 1rem;
+            }
+
+            .pricing-table {
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 0;
+                background: rgba(255, 255, 255, 0.03);
+                border-radius: 15px;
+                backdrop-filter: blur(10px);
+            }
+
+            .pricing-table th,
+            .pricing-table td {
+                padding: 1.5rem;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .pricing-table th {
+                background: rgba(0, 0, 0, 0.2);
+            }
+
+            .pricing-table th:first-child {
+                border-top-right-radius: 15px;
+            }
+
+            .pricing-table th:last-child {
+                border-top-left-radius: 15px;
+            }
+
+            .feature-column {
+                text-align: right;
+                font-weight: normal;
+                color: var(--gray);
+            }
+
+            .plan-header {
+                padding: 1rem;
+            }
+
+            .plan-header h3 {
+                color: var(--primary);
+                margin-bottom: 1rem;
+            }
+
+            .price {
+                font-size: 2rem;
+                font-weight: bold;
+                color: var(--light);
+                margin: 0.5rem 0;
+            }
+
+            .duration {
+                color: var(--gray);
+                font-size: 0.9rem;
+            }
+
+            .popular {
+                position: relative;
+                background: linear-gradient(135deg, rgba(0, 60, 255, 0.1), rgba(0, 180, 255, 0.1));
+            }
+
+            .popular-badge {
+                position: absolute;
+                top: -12px;
+                right: 50%;
+                transform: translateX(50%);
+                background: var(--primary);
+                color: var(--light);
+                padding: 0.25rem 1rem;
+                border-radius: 20px;
+                font-size: 0.8rem;
+            }
+
+            .pricing-table i {
+                font-size: 1.2rem;
+            }
+
+            .ri-check-line {
+                color: var(--success);
+            }
+
+            .ri-close-line {
+                color: var(--gray);
+            }
+
+            .premium {
+                color: #ffd700;
+            }
+
+            .action-row {
+                background: rgba(0, 0, 0, 0.2);
+            }
+
+            .action-row td {
+                border-bottom: none;
+            }
+
+            .btn.popular {
+                background: var(--primary);
+                box-shadow: 0 0 20px rgba(0, 60, 255, 0.3);
+            }
+
+            @media (max-width: 768px) {
+                .pricing-table {
+                    font-size: 0.9rem;
+                }
+
+                .pricing-table th,
+                .pricing-table td {
+                    padding: 1rem 0.5rem;
+                }
+
+                .price {
+                    font-size: 1.5rem;
+                }
+            }
+        </style>
+    </section>
+
+    </section>
+    
+    <!-- Payment Methods Section -->
+    <section id="payment-methods" class="payment-methods">
+        <div class="container">
+            <div class="section-title">
+                <h2>طرق الدفع المتاحة</h2>
+                <p>نقدم لكم مجموعة متنوعة من طرق الدفع الآمنة والموثوقة</p>
+            </div>
+            <div class="payment-methods-grid">
+                <!-- PayPal -->
+                <div class="payment-card">
+                    <div class="payment-icon">
+                        <img src="img/paypal.svg" alt="PayPal" />
+                    </div>
+                    <h3>PayPal</h3>
+                    <p>دفع آمن وسريع عبر PayPal</p>
+                    <ul class="payment-features">
+                        <li><i class="ri-shield-check-fill"></i> حماية المشتري</li>
+                        <li><i class="ri-time-fill"></i> تفعيل فوري</li>
+                        <li><i class="ri-global-fill"></i> قبول عالمي</li>
+                    </ul>
+                </div>
+
+                <!-- Binance -->
+                <div class="payment-card">
+                    <div class="payment-icon">
+                        <i class="ri-bit-coin-fill"></i>
+                    </div>
+                    <h3>Binance</h3>
+                    <p>دفع بالعملات الرقمية المشفرة</p>
+                    <ul class="payment-features">
+                        <li><i class="ri-exchange-fill"></i> أسعار صرف تنافسية</li>
+                        <li><i class="ri-lock-fill"></i> معاملات آمنة</li>
+                        <li><i class="ri-flashlight-fill"></i> تحويل سريع</li>
+                    </ul>
+                </div>
+
+                <!-- CIH Bank (Morocco) -->
+                <div class="payment-card morocco">
+                    <div class="payment-icon">
+                        <i class="ri-bank-fill"></i>
+                    </div>
+                    <h3>CIH Bank</h3>
+                    <p>تحويل بنكي مباشر في المغرب</p>
+                    <ul class="payment-features">
+                        <li><i class="ri-map-pin-fill"></i> متوفر في المغرب</li>
+                        <li><i class="ri-bank-card-fill"></i> تحويل بنكي محلي</li>
+                        <li><i class="ri-customer-service-fill"></i> دعم باللغة العربية</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <style>
+            .payment-methods {
+                padding: 6rem 0;
+                background: linear-gradient(to bottom, rgba(10, 14, 23, 0.95), var(--dark));
+            }
+
+            .payment-methods-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .payment-card {
+                background: rgba(255, 255, 255, 0.03);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 20px;
+                padding: 2rem;
+                text-align: center;
+                transition: all 0.3s ease;
+            }
+
+            .payment-card:hover {
+                transform: translateY(-10px);
+                border-color: var(--primary);
+                box-shadow: 0 10px 30px rgba(0, 60, 255, 0.2);
+            }
+
+            .payment-icon {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto 1.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 50%;
+                font-size: 2.5rem;
+            }
+
+            .payment-icon img {
+                width: 50px;
+                height: 50px;
+                object-fit: contain;
+            }            .payment-icon i {
+                font-size: 2.5rem;
+                background: linear-gradient(135deg, var(--primary), var(--secondary));
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                color: transparent;
+            }
+
+            .payment-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: var(--light);
+            }
+
+            .payment-card p {
+                color: var(--gray);
+                margin-bottom: 1.5rem;
+            }
+
+            .payment-features {
+                list-style: none;
+                text-align: right;
+                margin-top: 1.5rem;
+            }
+
+            .payment-features li {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 0.8rem;
+                color: var(--light);
+            }
+
+            .payment-features i {
+                color: var(--primary);
+                font-size: 1.2rem;
+            }
+
+            .morocco .payment-icon {
+                background: linear-gradient(135deg, #c1272d, #006233);
+            }            .morocco .payment-icon i {
+                background: var(--light);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                color: transparent;
+            }
+
+            @media (max-width: 768px) {
+                .payment-methods-grid {
+                    grid-template-columns: 1fr;
+                    padding: 0 1rem;
+                }
+
+                .payment-card {
+                    margin-bottom: 1rem;
+                }
+            }
+        </style>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq section">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+            </div>
+            <div class="accordion">
+                <!-- FAQ 1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>هل يمكن اكتشاف ذلك من خلال نظام مكافحة الغش في اللعبة؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>يستخدم نظامنا تشفيرًا عسكريًا وأنماط سلوك عشوائية تجعله شبه خفي. لم نتلقَّ أيَّ حظر مُبلَّغ عنه خلال الأشهر الثمانية الماضية لقاعدة مستخدمينا التي يزيد عددها عن 5,000 مستخدم، وذلك عند استخدامه وفقًا لإرشاداتنا.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>كم مرة تقوم بتحديث البرنامج؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>نُصدر تحديثات بسيطة أسبوعيًا وتحديثات رئيسية خلال ٢٤ ساعة من أي تحديث للعبة. يحصل مشتركو باقة Elite على تحديثات فورية تلقائيًا، بينما تحصل الباقات الأخرى على تحديثات خلال يوم إلى ثلاثة أيام، حسب مستوى اشتراكهم.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>هل يمكنني استخدام هذا على أجهزة متعددة؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>كل ترخيص صالح لجهاز واحد في كل مرة. مع ذلك، يمكنك نقل ترخيصك إلى جهاز جديد حتى ثلاث مرات شهريًا عبر لوحة معلومات حسابك.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>ما هي طرق الدفع التي تقبلونها؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>نقبل جميع بطاقات الائتمان الرئيسية، وPayPal، وBitcoin، وغيرها من العملات المشفرة لضمان أقصى درجات الخصوصية. تتم معالجة جميع المدفوعات عبر قنوات آمنة ومشفرة.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>هل تقدمون استرداد الأموال؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>نقدم ضمان استرداد الأموال لمدة يومين لجميع المشتركين الجدد. بعد هذه الفترة، يُمكننا تقديم استرداد نسبي للوقت غير المُستخدم في ظروف خاصة - تواصل مع فريق الدعم لدينا للحصول على المساعدة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+  
+      
+    </section>
+      <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>تواصل معنا</h2>
+                <p>انضم إلى مجتمعنا واحصل على الدعم الفوري</p>
+            </div>
+            <div class="contact-content">
+                <div class="discord-section">
+                    <div class="discord-card">
+                        <div class="discord-header">
+                            <i class="ri-discord-fill"></i>
+                            <h3>سيرفر Discord</h3>
+                        </div>
+                        <p>انضم إلى مجتمعنا النشط على Discord للحصول على:</p>
+                        <ul class="discord-features">
+                            <li><i class="ri-checkbox-circle-fill"></i> دعم فني فوري</li>
+                            <li><i class="ri-checkbox-circle-fill"></i> تحديثات حصرية</li>
+                            <li><i class="ri-checkbox-circle-fill"></i> نصائح واستراتيجيات</li>
+                            <li><i class="ri-checkbox-circle-fill"></i> مجتمع نشط من اللاعبين</li>
+                        </ul>                        <a href="https://discord.gg/UjU5DGmFMU" target="_blank" class="discord-button">
+                            <i class="ri-discord-fill"></i>
+                            انضم للسيرفر
+                        </a>
+                        <div class="discord-stats">
+                            <div class="stat">
+                                <i class="ri-user-3-fill"></i>
+                                <span>500+</span>
+                                <p>عضو</p>
+                            </div>
+                            <div class="stat">
+                                <i class="ri-chat-3-fill"></i>
+                                <span>24/7</span>
+                                <p>دعم فني</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <!-- ترك هذا المكان فارغاً حيث سيتم الاكتفاء بقسم Discord -->
+            </div>
+        </div>
+        <style>
+            .contact {
+                padding: 6rem 0;
+                background: linear-gradient(to bottom, var(--dark), rgba(10, 14, 23, 0.95));
+            }
+
+            .contact-content {
+                display: flex;
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+            .discord-section {
+                display: flex;
+                justify-content: center;
+                padding: 2rem 0;
+            }
+
+            .discord-card {
+                background: rgba(88, 101, 242, 0.1);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(88, 101, 242, 0.2);
+                border-radius: 20px;
+                padding: 2.5rem;
+                max-width: 500px;
+                width: 100%;
+                text-align: center;
+                transition: all 0.3s ease;
+            }
+
+            .discord-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(88, 101, 242, 0.2);
+            }
+
+            .discord-header {
+                margin-bottom: 2rem;
+            }
+
+            .discord-header i {
+                font-size: 4rem;
+                color: #5865F2;
+                margin-bottom: 1rem;
+            }
+
+            .discord-header h3 {
+                font-size: 1.8rem;
+                color: #5865F2;
+            }
+
+            .discord-features {
+                list-style: none;
+                text-align: right;
+                margin: 2rem 0;
+            }
+
+            .discord-features li {
+                margin: 1rem 0;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .discord-features i {
+                color: #5865F2;
+            }
+
+            .discord-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                background: #5865F2;
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 50px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                margin: 1rem 0;
+            }
+
+            .discord-button:hover {
+                background: #4752C4;
+                transform: translateY(-2px);
+            }
+
+            .discord-stats {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                margin-top: 2rem;
+                padding-top: 2rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .stat {
+                text-align: center;
+            }
+
+            .stat i {
+                font-size: 1.5rem;
+                color: #5865F2;
+                margin-bottom: 0.5rem;
+            }
+
+            .stat span {
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: var(--light);
+            }
+
+            .stat p {
+                color: var(--gray);
+                font-size: 0.9rem;
+            }            /* Removed unused contact grid styles */
+
+            .contact-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.8rem 1.5rem;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            }            /* Removed unused contact button styles */
+
+            @media (max-width: 768px) {
+                .discord-card {
+                    margin: 0 1rem;
+                }
+
+                .contact-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .discord-stats {
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+            }
+        </style>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن NTRS XIT</h3>
+                    <p style="color: var(--gray);">نحن نقدم أفضل خدمات تطوير Free Fire مع ضمان الأمان والجودة العالية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="ri-facebook-fill"></i></a>
+                        <a href="#"><i class="ri-twitter-fill"></i></a>
+                        <a href="#"><i class="ri-instagram-line"></i></a>
+                        <a href="#"><i class="ri-discord-fill"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="free.html">النسخة المجانية</a></li>
+                        <li><a href="payment.html">النسخة المدفوعة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الدعم</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">اتصل بنا</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NTRS XIT - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Apply animations to features
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 14, 23, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.background = 'rgba(10, 14, 23, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

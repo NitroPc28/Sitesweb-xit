@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/1bimo_logo.jpg">
+    <title>النسخة المجانية - NTRS XIT</title>
+    <style>
+        :root {
+            --primary: #003cff;
+            --secondary: #00b4ff;
+            --dark: #0a0e17;
+            --light: #faf8f9;
+            --gray: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 14, 23, 0.95);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--light);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--light);
+            box-shadow: 0 4px 15px rgba(0, 60, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .logo:hover .logo-icon::after {
+            transform: translateX(100%);
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Free Version Content */
+        .free-content {
+            padding-top: 100px;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-item i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .feature-item p {
+            color: var(--gray);
+        }
+
+        .download-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: rgba(0, 60, 255, 0.1);
+            border-radius: 10px;
+            margin: 3rem 0;
+        }
+
+        .btn-download {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .instructions {
+            margin: 4rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .instructions h2 {
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .instructions ol {
+            list-style-position: inside;
+            padding-right: 2rem;
+        }
+
+        .instructions li {
+            margin-bottom: 1rem;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: rgba(10, 14, 23, 0.98);
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            padding: 1rem;
+        }
+
+        .footer-section h3 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -0.5rem;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="ri-gamepad-fill"></i>
+                </div>
+                <div class="logo-text">
+                    NTRS XIT <span>FREE VERSION</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">الرئيسية</a>
+                <a href="free.html">النسخة المجانية</a>
+                <a href="payment.html">النسخة المدفوعة</a>
+                <a href="index.html#features">المميزات</a>
+                <a href="index.html#contact">اتصل بنا</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container free-content">
+        <h1 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">النسخة المجانية</h1>
+        
+        <div class="features-list">
+            <div class="feature-item">
+                <i class="ri-rocket-2-fill"></i>
+                <h3>تحسين الأداء الأساسي</h3>
+                <p>تحسين سرعة اللعبة وتقليل التأخير</p>
+            </div>
+            <div class="feature-item">
+                <i class="ri-shield-star-fill"></i>
+                <h3>حماية أساسية</h3>
+                <p>حماية بسيطة لحسابك أثناء اللعب</p>
+            </div>
+            <div class="feature-item">
+                <i class="ri-gamepad-fill"></i>
+                <h3>تحسينات اللعب</h3>
+                <p>تحسينات بسيطة لتجربة اللعب</p>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <h2 style="margin-bottom: 2rem;">احصل على النسخة المجانية الآن</h2>
+            <a href="#" class="btn-download">
+                <i class="ri-download-cloud-fill"></i>
+                تحميل النسخة المجانية
+            </a>
+        </div>
+
+        <div class="instructions">
+            <h2>تعليمات التثبيت</h2>
+            <ol>
+                <li>قم بتحميل الملف من الزر أعلاه</li>
+                <li>فك ضغط الملف المحمل</li>
+                <li>شغل الملف التنفيذي كمسؤول</li>
+                <li>اتبع التعليمات في نافذة التثبيت</li>
+                <li>استمتع بالنسخة المجانية!</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن NTRS XIT</h3>
+                    <p style="color: var(--gray);">نحن نقدم أفضل خدمات تطوير Free Fire مع ضمان الأمان والجودة العالية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="ri-facebook-fill"></i></a>
+                        <a href="#"><i class="ri-twitter-fill"></i></a>
+                        <a href="#"><i class="ri-instagram-line"></i></a>
+                        <a href="#"><i class="ri-discord-fill"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="free.html">النسخة المجانية</a></li>
+                        <li><a href="payment.html">النسخة المدفوعة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الدعم</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">اتصل بنا</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NTRS XIT - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
